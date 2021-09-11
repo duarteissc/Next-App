@@ -60,7 +60,7 @@ export default function LangIndex({ language }) {
 	return (
 		<>
 			<Head>
-				<title>Teeb2</title>
+				<title>Teeb</title>
 				<link rel="icon" href="/favicon.ico" />
 				<meta charSet="UTF-8" />
 				<meta name="HandheldFriendly" content="true" />
