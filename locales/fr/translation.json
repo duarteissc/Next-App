@@ -1,0 +1,13 @@
+{
+	"siteMeta": {
+		"languaje": "fr",
+		"title": "FR"
+	},
+	"home":"Home",
+	"foodtypenav":"Food type",
+	"restaurantnav": "Restaurant",
+	"site": "Seite",
+	"backTo": "Zurück zu",
+	"helloWorld": "Hallo Welt!",
+	"language": "Sprache"
+}

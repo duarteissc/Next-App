@@ -18,7 +18,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { red } from '@material-ui/core/colors';
-
+import i18next from 'i18next';
 
 export default function Productos({ search }) {
 
@@ -105,7 +105,7 @@ export default function Productos({ search }) {
             if (age == "Todos" ) {
               return <div className="col-xs-12 col-md-6" key={index} style={{ marginTop: "4em" }}>
               <div style={{ width: "100%" }}>
-                <Card onClick={e => Router.push('/restaurante/[id]', `/restaurante/${element.slug}`)}>
+                <Card onClick={e => Router.push('/[lang]/restaurante/[id]', `/${i18next.t('siteMeta.languaje')}/restaurante/${element.slug}`)}>
                   <CardHeader
                     avatar={
                       <Avatar aria-label="recipe" className={classes.avatar}>
@@ -142,7 +142,7 @@ export default function Productos({ search }) {
             else if (element.food_type.includes(age)) {
               return <div className="col-xs-12 col-md-6" key={index}  style={{ marginTop: "4em" }}>
                   <div style={{ width: "100%" }} >
-                    <Card onClick={e => Router.push('/restaurante/[id]', `/restaurante/${element.slug}`)}>
+                    <Card onClick={e => Router.push('[lang]/restaurante/[id]', `${i18next.t('siteMeta.languaje')}/restaurante/${element.slug}`)}>
                       <CardHeader
                         avatar={
                           <Avatar aria-label="recipe" className={classes.avatar}>

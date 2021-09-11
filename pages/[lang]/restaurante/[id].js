@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import IdRestaurante from '../../components/IdRestaurante'
+import IdRestaurante from '../../../components/IdRestaurante'
 const Restaurante = () => {
     return (
         <>

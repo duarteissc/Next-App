@@ -1,0 +1,13 @@
+{
+	"siteMeta": {
+		"languaje": "es",
+		"title": "ES"
+	},
+	"home":"Inicio",
+	"foodtypenav":"Tipos de comida",
+	"restaurantnav": "Restaurante",
+	"site": "Sitio",
+	"backTo": "Atras",
+	"helloWorld": "Hola mundo!",
+	"language": "Language"
+}

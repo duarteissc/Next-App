@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import EditarRestaurante from '../../components/EditarRestaurante'
+import EditarRestaurante from '../../../components/EditarRestaurante'
 const Restaurant = () => {
     return (
         <>
@@ -17,12 +17,12 @@ const Restaurant = () => {
                 <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet" />
             </Head>
             <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-xs-0 col-md-4 col-lg-4"></div>
-                                    <div className="col-xs-12 col-md-4 col-lg-4"><EditarRestaurante/></div>
-                                    <div className="col-xs-0 col-md-4 col-lg-4"> </div>
-           
-            </div>
+                <div className="row">
+                    <div className="col-xs-0 col-md-4 col-lg-4"></div>
+                    <div className="col-xs-12 col-md-4 col-lg-4"><EditarRestaurante /></div>
+                    <div className="col-xs-0 col-md-4 col-lg-4"> </div>
+
+                </div>
             </div>
         </>
     )

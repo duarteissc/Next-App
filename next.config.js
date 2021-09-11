@@ -7,7 +7,7 @@ const sendGetRequest = async (ctx) => {
     credentials: 'same-origin',
     headers: {
         'Accept': 'application/json',
-        'Accept-Language': "es-ES",
+        'Accept-Language': "es",
     }
 })
 
@@ -17,28 +17,31 @@ const sendGetRequest = async (ctx) => {
 
 
 module.exports = {
-  i18n: {
-    locales: ["en-US", "fr-FR", "es-ES"],
-    defaultLocale: "es-ES",
-  },
-
   trailingSlash: true,
   exportPathMap: async function () {
     const posts = await sendGetRequest();
     const paths = {
-      '/foodtype': { page: '/foodtype' },
-      '/restaurantes': { page: '/restaurantes' },
+      '/es/foodtype': { page: '/[lang]/foodtype' },
+      '/en/foodtype': { page: '/[lang]/foodtype' },
+      '/fr/foodtype': { page: '/[lang]/foodtype' },
+
+      '/es/restaurantes': { page: '/[lang]/restaurantes' },
+      '/en/restaurantes': { page: '/[lang]/restaurantes' },
+      '/fr/restaurantes': { page: '/[lang]/restaurantes' },
       '/': { page: '/' },
-    };
-     //User routes cargadas
+      '/es': { page: '/[lang]' },
+      '/en': { page: '/[lang]' },
+      '/fr': { page: '/[lang]' },
+    }
+    //  User routes cargadas
     posts.forEach((product) => {
-      paths[`en-US/restaurante/${product.slug}`] = { page: 'en-US/restaurante/[id]' };
+      paths[`/en/restaurante/${product.slug}`] = { page: '/[lang]/restaurante/[id]' };
     });
     posts.forEach((product) => {
-      paths[`fr-FR/restaurante/${product.slug}`] = { page: 'fr-FR/restaurante/[id]' };
+      paths[`/fr/restaurante/${product.slug}`] = { page: '/[lang]/restaurante/[id]' };
     });
     posts.forEach((product) => {
-      paths[`/restaurante/${product.slug}`] = { page: '/restaurante/[id]' };
+      paths[`/es/restaurante/${product.slug}`] = { page: '/[lang]/restaurante/[id]' };
     });
     console.log(paths)
     return paths;

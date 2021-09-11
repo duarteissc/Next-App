@@ -10,7 +10,7 @@ class ItemTypeFood extends Component {
         return (
             <TableRow key={this.props.element.slug} onClick={(e) => this.btnTapped(this.props.element, this.props.setestado)}>
                 <TableCell component="th" scope="row">{this.props.element.name}</TableCell>
-                <TableCell align="center">{this.props.element.slug}</TableCell>
+                <TableCell align="left">{this.props.element.slug}</TableCell>
             </TableRow>
         );
     }

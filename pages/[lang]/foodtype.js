@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import ItemTypeFood from '../components/ItemTypeFood.js';
+import ItemTypeFood from '../../components/ItemTypeFood.js';
 import React, { useState } from 'react';
 import Script from 'next/script'
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,7 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import Card from '@material-ui/core/Card';
 
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -21,9 +21,13 @@ import Edit from '@material-ui/icons/Edit';
 import Delete from '@material-ui/icons/Delete';
 import TextField from "@material-ui/core/TextField";
 
-import { useAPI } from '../contexto/contexto'
+import { useAPI } from '../../contexto/contexto'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+
+import Layout from '../../components/Layout';
+import i18next from 'i18next';
+import { getAllLanguageSlugs, getLanguage } from '../../lib/lang';
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -134,19 +138,19 @@ const FoodType = () => {
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossOrigin="anonymous"></script>
                 <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet" />
             </Head>
+            <Layout >
             {isLoading ? <>Cargando..</>
                 :
                 <>
-                    <div className="container-fluid">
                         <div className="row">
                             <div className="col-6">
-                                <div style={{ margin: "4em" }}>
+                                <div>
                                     <TableContainer component={Paper} >
                                         <Table className={classes.table} aria-label="simple table">
                                             <TableHead>
                                                 <TableRow>
                                                     <TableCell>Foodtype</TableCell>
-                                                    <TableCell align="center">Slug</TableCell>
+                                                    <TableCell align="left">Slug</TableCell>
                                                 </TableRow>
                                             </TableHead>
                                             <TableBody>
@@ -156,8 +160,8 @@ const FoodType = () => {
                                     </TableContainer>
                                 </div>
                             </div>
-                            <div className="col-6">
-                                <div style={{ margin: "4em", textAlign: "center" }}>
+                            <div className="col-6"style={{ textAlign: "center" }}>
+                                <Card >
                                     <div><span id="id_foodtype_slug" value={estado.slug}>{estado.slug}</span></div>
 
                                     <TextField
@@ -179,7 +183,7 @@ const FoodType = () => {
                                         <BottomNavigationAction label="Eliminar" onClick={DeleteFoodtype} icon={<Delete />} />
                                     </BottomNavigation>
 
-                                </div>
+                                </Card>
                             </div>
                         </div>
                         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
@@ -192,11 +196,29 @@ const FoodType = () => {
                                 Error, verifique los campos.
                             </Alert>
                         </Snackbar>
-                    </div>
                 </>
             }
+            </Layout>
         </>
     )
 }
 
 export default FoodType
+
+
+export async function getStaticPaths() {
+	const paths = getAllLanguageSlugs();
+	return {
+		paths,
+		fallback: false,
+	};
+}
+
+export async function getStaticProps({ params }) {
+	const language = getLanguage(params.lang);
+	return {
+		props: {
+			language,
+		},
+	};
+}
